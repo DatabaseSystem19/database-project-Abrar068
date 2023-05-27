@@ -8,8 +8,8 @@ drop table player;
 --creation
 create table player (
   player_id number(10) primary key,
-  player_name varchar(30),
-  player_age number(10),
+  player_name varchar(30) not null,
+  player_age number(10) check(player_age>=18),
   player_height number(10,2),
   gender varchar(10)
 );
@@ -64,7 +64,7 @@ foreign key(position_id) references position(position_id),
 foreign key(player_id) references player(player_id)
 );
 
---DDl commands
+
 --column add
 alter table player add player_hometown varchar(20);
 --column modify
@@ -270,3 +270,7 @@ values (9, 'High', 'Low', 9, 'Right', 'Average');
 
 insert into attribute (attribute_id, def_rate, att_rate, position_id, weakfoot_usage, weakfoot_accuracy)
 values (10, 'Medium', 'Medium', 10, 'Both', 'Good');
+
+alter table position rename column position to position_name;
+alter table idol rename column idol to idol_name;
+alter table style rename column style to style_name;
